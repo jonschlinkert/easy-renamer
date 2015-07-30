@@ -2,6 +2,12 @@
 
 > Easily rename files using custom rename functions that are automatically used against any filepaths that match the associated regex or glob patterns.
 
+See [examples.js](examples.js). To run the examples, git clone the project then run the following from the root of the project:
+
+```sh
+$ npm i && node example
+```
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/)
