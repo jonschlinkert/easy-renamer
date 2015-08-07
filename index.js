@@ -47,7 +47,7 @@ function Renamer(options) {
  * @api public
  */
 
-Renamer.prototype.pattern = function(pattern, opts, fn) {
+Renamer.prototype.match = function(pattern, opts, fn) {
   var key = this.makeKey(pattern);
   if (arguments.length === 1) {
     return this.patterns[key];
@@ -81,7 +81,7 @@ Renamer.prototype.pattern = function(pattern, opts, fn) {
 Renamer.prototype.rename = function(fp) {
   var keys = Object.keys(this.patterns);
   for (var i = 0; i < keys.length; i++) {
-    var pattern = this.pattern(keys[i]);
+    var pattern = this.match(keys[i]);
     if (pattern.isMatch(fp)) {
       return pattern.rename(fp);
     }
