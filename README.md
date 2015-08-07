@@ -22,7 +22,7 @@ $ npm i easy-renamer --save
 var Renamer = require('easy-renamer');
 var renamer = new Renamer({destBase: 'foo/bar'});
 
-renamer.pattern('*.md', function(file) {
+renamer.match('*.md', function(file) {
   return path.join(file.dirname, file.name + '.html');
 });
 
@@ -35,22 +35,21 @@ renamer.rename('a/b/c.md');
 ```js
 var renamer = require('easy-renamer');
 
-function renameExt(ext) {
-  return path.join(file.dirname, file.name + ext);
+function extname(ext) {
+  return function(file) {
+    return path.join(file.dirname, file.name + ext);
+  };
 }
 
 // use glob patterns...
-renamer.pattern('**/*.md', function(file) {
-  return renameExt(file, '.html');
-});
+renamer.match('**/*.md', extname('.html'));
+
 // or regex
-renamer.pattern(/foo\/.*\.coffee$/, function(file) {
-  return renameExt(file, '.js');
-});
+renamer.match(/foo\/.*\.less$/, extname('.css'));
 
 glob('**/*', function(err, files) {
   files.forEach(function(fp) {
-    var result = renamer.rename(fp);
+    fp = renamer.rename(fp);
     //=> do something with dest...
   });
 });
