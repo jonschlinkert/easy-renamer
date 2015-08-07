@@ -1,18 +1,18 @@
 
 var path = require('path');
-var glob = require('glob');
+var glob = require('globby');
 var Renamer = require('./');
 var renamer = new Renamer({destBase: 'foo/bar'});
 
-renamer.pattern('fixtures/*.coffee', function (file) {
+renamer.match('fixtures/*.coffee', function (file) {
   return path.join(file.dirname, file.name + '.js');
 });
 
-renamer.pattern('**/*.txt', function (file) {
+renamer.match('**/*.txt', function (file) {
   return path.join(file.dirname, file.name + '.html');
 });
 
-renamer.pattern(/[a-c]\.md/, function (file) {
+renamer.match(/[a-c]\.md/, function (file) {
   return path.join(file.dirname, file.name + '.html');
 });
 
