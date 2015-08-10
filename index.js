@@ -35,7 +35,7 @@ function Renamer(options) {
  *
  * ```js
  * // rewrite file paths with `.txt` extensions
- * renamer.pattern('*.txt', function(file) {
+ * renamer.match('*.txt', function(file) {
  *   // `file` is an object containing the parsed parts of the file path
  *   return path.join(file.dirname, file.name + '.foo');
  * });
@@ -66,7 +66,7 @@ Renamer.prototype.match = function(pattern, opts, fn) {
  * registered pattern.
  *
  * ```js
- * renamer.pattern('*.txt', function(file) {
+ * renamer.match('*.txt', function(file) {
  *   return path.join(file.dirname, file.name + '.foo');
  * });
  * renamer.rename('a/b/c.txt');

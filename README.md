@@ -86,7 +86,7 @@ Register a renaming function to use when a filepath matches the given pattern.
 
 ```js
 // rewrite file paths with `.txt` extensions
-renamer.pattern('*.txt', function(file) {
+renamer.match('*.txt', function(file) {
   // `file` is an object containing the parsed parts of the file path
   return path.join(file.dirname, file.name + '.foo');
 });
@@ -104,7 +104,7 @@ Rename a filepath using the function associated with a registered pattern.
 **Example**
 
 ```js
-renamer.pattern('*.txt', function(file) {
+renamer.match('*.txt', function(file) {
   return path.join(file.dirname, file.name + '.foo');
 });
 renamer.rename('a/b/c.txt');
