@@ -1,7 +1,7 @@
 {
   "name": "easy-renamer",
   "description": "Easily rename files using custom rename functions that are automatically used against any filepaths that match the associated regex or glob patterns.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/jonschlinkert/easy-renamer",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/easy-renamer",
@@ -13,7 +13,6 @@
     "index.js",
     "lib/"
   ],
-  "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -22,13 +21,13 @@
   },
   "dependencies": {
     "extend-shallow": "^2.0.1",
-    "kind-of": "^2.0.0",
-    "lazy-cache": "^0.1.0",
+    "kind-of": "^2.0.1",
+    "lazy-cache": "^0.2.4",
     "micromatch": "^2.2.0",
     "parse-filepath": "^0.6.3"
   },
   "devDependencies": {
-    "globby": "^2.1.0",
+    "matched": "^0.3.2",
     "mocha": "*",
     "should": "*"
   },
