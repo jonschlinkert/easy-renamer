@@ -7,9 +7,8 @@
 
 'use strict';
 
-var extend = require('extend-shallow');
-var typeOf = require('kind-of');
 var Pattern = require('./lib/pattern');
+var utils = require('./lib/utils');
 
 /**
  * Create an instance of `Renamer` with the given `options`.
@@ -25,8 +24,8 @@ function Renamer(options) {
   if (!(this instanceof Renamer)) {
     return new Renamer(options);
   }
-  this.patterns = {};
   this.options = options || {};
+  this.patterns = {};
 }
 
 /**
@@ -52,11 +51,11 @@ Renamer.prototype.match = function(pattern, opts, fn) {
   if (arguments.length === 1) {
     return this.patterns[key];
   }
-  if (typeOf(opts) === 'function') {
+  if (utils.typeOf(opts) === 'function') {
     fn = opts;
     opts = {};
   }
-  opts = extend({}, this.options, opts);
+  opts = utils.extend({}, this.options, opts);
   this.patterns[key] = new Pattern(pattern, opts, fn);
   return this;
 };
@@ -97,10 +96,10 @@ Renamer.prototype.rename = function(fp) {
  */
 
 Renamer.prototype.makeKey = function(key) {
-  if (typeOf(key) === 'regexp') {
+  if (utils.typeOf(key) === 'regexp') {
     return key.source;
   }
-  if (typeOf(key) !== 'string') {
+  if (typeof key !== 'string') {
     throw new TypeError('Renamer expects patterns to be a string or regexp.');
   }
   return key;

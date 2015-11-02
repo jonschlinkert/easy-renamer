@@ -1,6 +1,6 @@
 
 var path = require('path');
-var glob = require('globby');
+var glob = require('matched');
 var Renamer = require('./');
 var renamer = new Renamer({destBase: 'foo/bar'});
 
