@@ -7,7 +7,7 @@
 
 'use strict';
 
-var Pattern = require('./lib/pattern');
+var Matcher = require('./lib/matcher');
 var utils = require('./lib/utils');
 
 /**
@@ -25,7 +25,7 @@ function Renamer(options) {
     return new Renamer(options);
   }
   this.options = options || {};
-  this.patterns = {};
+  this.matchers = {};
 }
 
 /**
@@ -40,23 +40,23 @@ function Renamer(options) {
  * });
  * ```
  *
- * @param {String|RegExp} `pattern` Patterns used for matching, may be a regex or glob pattern.
+ * @param {String|RegExp} `pattern` Matchers used for matching, may be a regex or glob pattern.
  * @param {Function} Rename function to use when the file path matches the pattern.
  * @return {Object} Renamer instance, for chaining
  * @api public
  */
 
-Renamer.prototype.match = function(pattern, opts, fn) {
+Renamer.prototype.matcher = function(pattern, opts, fn) {
   var key = this.makeKey(pattern);
   if (arguments.length === 1) {
-    return this.patterns[key];
+    return this.matchers[key];
   }
-  if (utils.typeOf(opts) === 'function') {
+  if (typeof opts === 'function') {
     fn = opts;
     opts = {};
   }
   opts = utils.extend({}, this.options, opts);
-  this.patterns[key] = new Pattern(pattern, opts, fn);
+  this.matchers[key] = new Matcher(pattern, opts, fn);
   return this;
 };
 
@@ -78,11 +78,11 @@ Renamer.prototype.match = function(pattern, opts, fn) {
  */
 
 Renamer.prototype.rename = function(fp) {
-  var keys = Object.keys(this.patterns);
+  var keys = Object.keys(this.matchers);
   for (var i = 0; i < keys.length; i++) {
-    var pattern = this.match(keys[i]);
-    if (pattern.isMatch(fp)) {
-      return pattern.rename(fp);
+    var matcher = this.matcher(keys[i]);
+    if (matcher.isMatch(fp)) {
+      return matcher.rename(fp);
     }
   }
   return fp;
@@ -100,7 +100,7 @@ Renamer.prototype.makeKey = function(key) {
     return key.source;
   }
   if (typeof key !== 'string') {
-    throw new TypeError('Renamer expects patterns to be a string or regexp.');
+    throw new TypeError('Renamer expects matchers to be a string or regexp.');
   }
   return key;
 };
