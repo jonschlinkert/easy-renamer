@@ -11,8 +11,9 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "lib/"
+    "lib"
   ],
+  "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -22,11 +23,12 @@
   "dependencies": {
     "extend-shallow": "^2.0.1",
     "kind-of": "^3.0.2",
-    "lazy-cache": "^0.2.4",
-    "micromatch": "^2.3.3",
-    "vinyl": "^1.1.0"
+    "lazy-cache": "^1.0.3",
+    "micromatch": "^2.3.7",
+    "vinyl": "^1.1.1"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.7",
     "matched": "^0.3.2",
     "mocha": "*",
     "should": "*"
@@ -51,12 +53,27 @@
     "renaming"
   ],
   "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
     "related": {
       "list": [
-        "parse-filepath",
+        "map-files",
         "micromatch",
-        "map-files"
+        "parse-filepath"
       ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
     }
   }
 }
