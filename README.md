@@ -1,19 +1,21 @@
-# easy-renamer [![NPM version](https://badge.fury.io/js/easy-renamer.svg)](http://badge.fury.io/js/easy-renamer)  [![Build Status](https://travis-ci.org/jonschlinkert/easy-renamer.svg)](https://travis-ci.org/jonschlinkert/easy-renamer)
+# easy-renamer [![NPM version](https://img.shields.io/npm/v/easy-renamer.svg?style=flat)](https://www.npmjs.com/package/easy-renamer) [![NPM downloads](https://img.shields.io/npm/dm/easy-renamer.svg?style=flat)](https://npmjs.org/package/easy-renamer) [![Build Status](https://img.shields.io/travis/jonschlinkert/easy-renamer.svg?style=flat)](https://travis-ci.org/jonschlinkert/easy-renamer)
 
 > Easily rename files using custom rename functions that are automatically used against any filepaths that match the associated regex or glob patterns.
+
+## Install
+
+Install with [npm](https://www.npmjs.com/):
+
+```sh
+$ npm install easy-renamer --save
+```
+
+## Examples
 
 See [examples](example.js). To run the examples, git clone the project then run the following from the root of the project:
 
 ```sh
 $ npm i && node example
-```
-
-## Install
-
-Install with [npm](https://www.npmjs.com/)
-
-```sh
-$ npm i easy-renamer --save
 ```
 
 ## Usage
@@ -56,75 +58,6 @@ glob('**/*', function(err, files) {
 });
 ```
 
-## API
-
-### [Renamer](index.js#L23)
-
-Create an instance of `Renamer` with the given `options`.
-
-**Params**
-
-* `options` **{Object}**
-
-**Example**
-
-```js
-var renamer = new Renamer(options);
-```
-
-### [.matcher](index.js#L49)
-
-Register a renaming function to use when a filepath matches the given pattern.
-
-**Params**
-
-* `pattern` **{String|RegExp}**: Matchers used for matching, may be a regex or glob pattern.
-* **{Function}**: Rename function to use when the file path matches the pattern.
-* `returns` **{Object}**: Renamer instance, for chaining
-
-**Example**
-
-```js
-// rewrite file paths with `.txt` extensions
-renamer.match('*.txt', function(file) {
-  // `file` is an object containing the parsed parts of the file path
-  return path.join(file.dirname, file.name + '.foo');
-});
-```
-
-### [.rename](index.js#L80)
-
-Rename a filepath using the function associated with a registered pattern.
-
-**Params**
-
-* `fp` **{String}**
-* `returns` **{String}**: Renamed filepath.
-
-**Example**
-
-```js
-renamer.match('*.txt', function(file) {
-  return path.join(file.dirname, file.name + '.foo');
-});
-renamer.rename('a/b/c.txt');
-//=> 'a/b/c.foo'
-```
-
-## Related projects
-
-* [map-files](https://www.npmjs.com/package/map-files): Return an object for a glob of files. Pass a `rename` function for the keys,… [more](https://www.npmjs.com/package/map-files) | [homepage](https://github.com/jonschlinkert/map-files)
-* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch. Just… [more](https://www.npmjs.com/package/micromatch) | [homepage](https://github.com/jonschlinkert/micromatch)
-* [parse-filepath](https://www.npmjs.com/package/parse-filepath): Parse a filepath into an object. Falls back on the native node.js `path.parse` method if… [more](https://www.npmjs.com/package/parse-filepath) | [homepage](https://github.com/jonschlinkert/parse-filepath)
-
-## Running tests
-
-Install dev dependencies:
-
-```sh
-$ npm i -d && npm test
-```
-
 ## Changelog
 
 **v0.3.0**
@@ -137,22 +70,52 @@ $ npm i -d && npm test
 * Renamed `.pattern()` method to `.match()`
 * Implements lazy-caching
 
+## Related projects
+
+You might also be interested in these projects:
+
+* [map-files](https://www.npmjs.com/package/map-files): Return an object for a glob of files. Pass a `rename` function for the keys,… [more](https://www.npmjs.com/package/map-files) | [homepage](https://github.com/jonschlinkert/map-files)
+* [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A drop-in replacement and faster alternative to minimatch and multimatch. Just… [more](https://www.npmjs.com/package/micromatch) | [homepage](https://github.com/jonschlinkert/micromatch)
+* [parse-filepath](https://www.npmjs.com/package/parse-filepath): Pollyfill for node.js `path.parse`, parses a filepath into an object. | [homepage](https://github.com/jonschlinkert/parse-filepath)
+
 ## Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/easy-renamer/issues/new).
+
+## Building docs
+
+Generate readme and API documentation with [verb](https://github.com/verbose/verb):
+
+```sh
+$ npm install verb && npm run docs
+```
+
+Or, if [verb](https://github.com/verbose/verb) is installed globally:
+
+```sh
+$ verb
+```
+
+## Running tests
+
+Install dev dependencies:
+
+```sh
+$ npm install -d && npm test
+```
 
 ## Author
 
 **Jon Schlinkert**
 
-+ [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+* [github/jonschlinkert](https://github.com/jonschlinkert)
+* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
 
 ## License
 
-Copyright © 2015 Jon Schlinkert
-Released under the MIT license.
+Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
+Released under the [MIT license](https://github.com/jonschlinkert/easy-renamer/blob/master/LICENSE).
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on December 03, 2015._
+_This file was generated by [verb](https://github.com/verbose/verb), v, on April 02, 2016._
