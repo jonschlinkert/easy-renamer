@@ -82,7 +82,7 @@ Renamer.prototype.rename = function(fp) {
   for (var i = 0; i < keys.length; i++) {
     var matcher = this.matcher(keys[i]);
     if (matcher.isMatch(fp)) {
-      return matcher.rename(fp);
+      return matcher.rename(fp) || fp;
     }
   }
   return fp;
